@@ -18,8 +18,8 @@ namespace DataTransmission.Data
             List<StoreDTO> storeList = null;
             try
             {
-                conn1 = new SqlConnection("Server=DESKTOP-83BQOP4\\RAY; Database=ProdPassio; TrustServerCertificate=True; MultipleActiveResultSets=true; User Id=sa;Password=123456;");
-                conn2 = new SqlConnection("Server=DESKTOP-83BQOP4\\RAY; Database=ResoSaleReport; TrustServerCertificate=True; MultipleActiveResultSets=true; User Id=sa;Password=123456;");
+                conn1 = new SqlConnection("Server=DESKTOP-0U1VVRJ\\SQLEXPRESS; Database=ProdPassio; TrustServerCertificate=True; MultipleActiveResultSets=true; User Id=sa;Password=123456;");
+                conn2 = new SqlConnection("Server=DESKTOP-0U1VVRJ\\SQLEXPRESS; Database=ResoSaleReport; TrustServerCertificate=True; MultipleActiveResultSets=true; User Id=sa;Password=123456;");
 
                 conn1.Open();
                 conn2.Open();
@@ -29,19 +29,19 @@ namespace DataTransmission.Data
                     "BrandId,HasOrder,HasBlogEditCollections,LogoUrl,FbAccessToken,StoreFeatureFilter,RunReport,AttendanceStoreFilter,StoreCode,PosId,StoreConfig," +
                     "DefaultDashBoard,PaymentTypeApply,ModeStore, ID " +
                     "from Store";
-                /*string sql2 = "INSERT INTO Store(ID, Name,ShortName,Address,Lat,Lon,Province,District,Ward,isAvailable,Active,Email,Phone,Fax,CreateDate,Type,RoomRentMode,ReportDate," +
+                string sql2 = "INSERT INTO Store(ID, Name,ShortName,Address,Lat,Lon,Province,District,Ward,isAvailable,Active,Email,Phone,Fax,CreateDate,Type,RoomRentMode,ReportDate," +
                     "GroupId,OpenTime,CloseTime,DefaultAdminPassword,HasProducts,HasNews,HasImageCollections,HasMultipleLanguage,HasWebPages,HasCustomerFeedbacks," +
                     "BrandId,HasOrder,HasBlogEditCollections,LogoUrl,FbAccessToken,StoreFeatureFilter,RunReport,AttendanceStoreFilter,StoreCode,PosId,StoreConfig," +
                     "DefaultDashBoard,PaymentTypeApply,ModeStore) " +
                     "VALUES(@ID, @Name,@ShortName,@Address,@Lat,@Lon,@Province,@District,@Ward,@isAvailable,@Active,@Email,@Phone,@Fax,@CreateDate,@Type,@RoomRentMode," +
                     "@ReportDate,@GroupId,@OpenTime,@CloseTime,@DefaultAdminPassword,@HasProducts,@HasNews,@HasImageCollections,@HasMultipleLanguage,@HasWebPages," +
                     "@HasCustomerFeedbacks,@BrandId,@HasOrder,@HasBlogEditCollections,@LogoUrl,@FbAccessToken,@StoreFeatureFilter,@RunReport,@AttendanceStoreFilter," +
-                    "@StoreCode,@PosId,@StoreConfig,@DefaultDashBoard,@PaymentTypeApply,@ModeStore)";*/
-                /*string sql2 = "insert into Store(ID,Name,ShortName,Address,Lat,Lon,Province,District,Ward,isAvailable,Active,Email,Phone,Fax,CreateDate,Type,RoomRentMode,ReportDate, " +
+                    "@StoreCode,@PosId,@StoreConfig,@DefaultDashBoard,@PaymentTypeApply,@ModeStore)";
+                /*string sql2 = "insert into Store(Id,Name,ShortName,Address,Lat,Lon,Province,District,Ward,isAvailable,Active,Email,Phone,Fax,CreateDate,Type,RoomRentMode,ReportDate, " +
                     "GroupId,OpenTime,CloseTime,DefaultAdminPassword,HasProducts,HasNews,HasImageCollections,HasMultipleLanguage,HasWebPages,HasCustomerFeedbacks," +
                     "BrandId,HasOrder,HasBlogEditCollections,LogoUrl,FbAccessToken,StoreFeatureFilter,RunReport,AttendanceStoreFilter,StoreCode,PosId,StoreConfig," +
                     "DefaultDashBoard,PaymentTypeApply,ModeStore) " +
-                    "values(4,'vu', 'anh vu', 'hcm', 12, 123, 79, 756, '', 1, '', '', 5456645656, '', '', 5, 2, '', null, null, null, null, null, null, null, null, null, null, 2, null, null, null, null, null, null, null, null, null, null, null, null, null)";
+                    "values(@ID,'vu', 'anh vu', 'hcm', 12, 123, 79, 756, '', 1, '', '', 5456645656, '', '', 5, 2, '', null, null, null, null, null, null, null, null, null, null, @BrandId, null, null, null, null, null, null, null, null, null, null, null, null, null)";
 */
 
                 SqlCommand cmd1 = new SqlCommand(sql1, conn1);
@@ -50,7 +50,15 @@ namespace DataTransmission.Data
                 while (reader1.Read())
                 { 
                     storeDTO = new StoreDTO();
-                    if(reader1.IsDBNull(0))
+                    if (reader1.IsDBNull(0))
+                    {
+                        storeDTO.Name = null;
+                    }
+                    else
+                    {
+                        storeDTO.Name = reader1.GetString(0);
+                    }
+                    if (reader1.IsDBNull(0))
                     {
                         storeDTO.Name = null;
                     }
@@ -388,7 +396,7 @@ namespace DataTransmission.Data
                     }
                     if (storeList == null)
                     {
-                        storeList = new List<StoreDTO> { storeDTO };
+                        storeList = new List<StoreDTO>{};
                     }
                     storeList.Add(storeDTO);
                     
