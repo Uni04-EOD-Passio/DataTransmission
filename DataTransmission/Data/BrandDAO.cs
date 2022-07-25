@@ -18,8 +18,8 @@ namespace DataTransmission.Data
             List<BrandDTO> brandList = null;
             try
             {
-                conn1 = new SqlConnection("Server=DESKTOP-0U1VVRJ\\SQLEXPRESS; Database=ProdPassio; TrustServerCertificate=True; MultipleActiveResultSets=true; User Id=sa;Password=123456;");
-                conn2 = new SqlConnection("Server=DESKTOP-0U1VVRJ\\SQLEXPRESS; Database=ResoSaleReport; TrustServerCertificate=True; MultipleActiveResultSets=true; User Id=sa;Password=123456;");
+                conn1 = new SqlConnection("Server=DESKTOP-83BQOP4\\RAY; Database=ProdPassio; TrustServerCertificate=True; MultipleActiveResultSets=true; User Id=sa;Password=123456;");
+                conn2 = new SqlConnection("Server=DESKTOP-83BQOP4\\RAY; Database=ResoSaleReport; TrustServerCertificate=True; MultipleActiveResultSets=true; User Id=sa;Password=123456;");
 
                 conn1.Open();
                 conn2.Open();
@@ -267,7 +267,6 @@ namespace DataTransmission.Data
                     }
                     else
                     {
-                        Console.WriteLine(reader1.GetInt32(29));
                         brandDTO.Id = reader1.GetInt32(29);
                     }
                     
@@ -280,7 +279,6 @@ namespace DataTransmission.Data
 
                 foreach(var brand in brandList)
                 {
-                    Console.WriteLine(brand.PhoneNumber);
                     SqlCommand cmd2 = new SqlCommand(sql2, conn2);
                     cmd2.Parameters.AddWithValue("@Id", brand.Id);
                     SqlParameter p0 = cmd2.Parameters.AddWithValue("@BrandName", brand.BrandName);

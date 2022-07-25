@@ -14,17 +14,6 @@ namespace DataTransmission.Data
         SqlConnection conn2 = null;
         ReportTrackingDAO reportTrackingDAO = null;
         List<ReportTrackingDAO> list = null;
-        public void checkDataNull(int num, String name, SqlDataReader reader)
-        {
-            if (reader.IsDBNull(num))
-            {
-                name = null;
-            }
-            else
-            {
-                name = reader.GetString(num);
-            }
-        }
 
         public void ReadReportTracking()
         {
