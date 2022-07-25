@@ -12,11 +12,15 @@ namespace DataTransmission
     {
         static void Main(string[] args)
         {
-            BrandDAO brandDAO = new BrandDAO();
+            /*BrandDAO brandDAO = new BrandDAO();
             brandDAO.ReadBrand();
 
             StoreDAO storeDAO = new StoreDAO();
-            storeDAO.ReadStore();
+            storeDAO.ReadStore();*/
+
+            DateReportDAO dateReportDAO = new DateReportDAO();
+            dateReportDAO.ReadDateReport();
+
         }
     }
 }

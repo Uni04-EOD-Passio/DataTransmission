@@ -18,8 +18,8 @@ namespace DataTransmission.Data
             List<StoreDTO> storeList = null;
             try
             {
-                conn1 = new SqlConnection("Server=DESKTOP-0U1VVRJ\\SQLEXPRESS; Database=ProdPassio; TrustServerCertificate=True; MultipleActiveResultSets=true; User Id=sa;Password=123456;");
-                conn2 = new SqlConnection("Server=DESKTOP-0U1VVRJ\\SQLEXPRESS; Database=ResoSaleReport; TrustServerCertificate=True; MultipleActiveResultSets=true; User Id=sa;Password=123456;");
+                conn1 = new SqlConnection("Server=DESKTOP-83BQOP4\\RAY; Database=ProdPassio; TrustServerCertificate=True; MultipleActiveResultSets=true; User Id=sa;Password=123456;");
+                conn2 = new SqlConnection("Server=DESKTOP-83BQOP4\\RAY; Database=ResoSaleReport; TrustServerCertificate=True; MultipleActiveResultSets=true; User Id=sa;Password=123456;");
 
                 conn1.Open();
                 conn2.Open();
