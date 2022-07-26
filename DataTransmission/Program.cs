@@ -18,8 +18,14 @@ namespace DataTransmission
             StoreDAO storeDAO = new StoreDAO();
             storeDAO.ReadStore();*/
 
-            DateReportDAO dateReportDAO = new DateReportDAO();
-            dateReportDAO.ReadDateReport();
+            /*DateReportDAO dateReportDAO = new DateReportDAO();
+            dateReportDAO.ReadDateReport();*/
+
+            /*PaymentReportDAO paymentReportDAO = new PaymentReportDAO();
+            paymentReportDAO.ReadPaymentReport();*/
+
+            ReportTrackingDAO reportTrackingDAO = new ReportTrackingDAO();
+            reportTrackingDAO.ReadReportTracking();
 
         }
     }
