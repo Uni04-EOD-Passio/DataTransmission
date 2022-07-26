@@ -204,9 +204,9 @@ namespace DataTransmission.Data
                         p23.Value = DBNull.Value;
                     }
                     cmd2.ExecuteNonQuery();
-                    Console.WriteLine("DateReport table created successfully !!");
+                    
                 }
-
+                Console.WriteLine("DateReport table created successfully !!");
 
             }
             catch (Exception e)

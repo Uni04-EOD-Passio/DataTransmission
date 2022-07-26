@@ -12,8 +12,11 @@ namespace DataTransmission.Data
     {
         SqlConnection conn1 = null;
         SqlConnection conn2 = null;
-        ReportTrackingDAO reportTrackingDAO = null;
-        List<ReportTrackingDAO> list = null;
+        ReportTrackingDTO reportTrackingDTO = null;
+        List<ReportTrackingDTO> list = null;
+        Mixin mixin = new Mixin();
+        SqlCommand cmd1 = null;
+        SqlCommand cmd2 = null;
 
         public void ReadReportTracking()
         {
@@ -26,17 +29,35 @@ namespace DataTransmission.Data
                 conn1.Open();
                 conn2.Open();
 
-                string sql1 = "";
+                string sql1 = "select [Id],StoreId,Date,DateUpdate,UpdatePerson,IsUpdate " +
+                    "from ReportTracking";
                 string sql2 = "";
 
-                SqlCommand cmd1 = new SqlCommand(sql1, conn1);
-                SqlDataReader reader1 = null;
-                reader1 = cmd1.ExecuteReader();
-                while (reader1.Read())
+                cmd1 = new SqlCommand(sql1, conn1);
+                SqlDataReader reader = null;
+                reader = cmd1.ExecuteReader();
+                while (reader.Read())
                 {
-                    reportTrackingDAO = new ReportTrackingDAO();
-                }
+                    reportTrackingDTO = new ReportTrackingDTO();
 
+                    reportTrackingDTO.Id = mixin.Check(0, reportTrackingDTO.Id, reader);
+                    reportTrackingDTO.StoreID = mixin.Check(1, reportTrackingDTO.StoreID, reader);
+                    reportTrackingDTO.Date = mixin.Check(2, reportTrackingDTO.Date, reader);
+                    reportTrackingDTO.DateUpdate = mixin.Check(3, reportTrackingDTO.DateUpdate, reader);
+                    reportTrackingDTO.UpdatePerson = mixin.Check(4, reportTrackingDTO.UpdatePerson, reader);
+                    reportTrackingDTO.isUpdate = mixin.Check(5, reportTrackingDTO.isUpdate, reader);
+
+                    if (list == null)
+                    {
+                        list = new List<ReportTrackingDTO>();
+                    }
+                    list.Add(reportTrackingDTO);
+
+                }
+                foreach(var dto in list)
+                {
+                    Console.WriteLine(dto.Id);
+                }
 
             }
             catch (Exception e)
